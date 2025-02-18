@@ -110,7 +110,7 @@ size_t readDataLengthFromAsn1(const SmartCard& card)
                   + int2hexstr(response.data[0]));
     }
 
-    // TODO: support other lenghts besides 2.
+    // TODO: support other lengths besides 2.
     // Assume 2-byte length, so second byte must be 0x82.
     if (response.data[1] != DER_TWO_BYTE_LENGTH) {
         // TODO: more specific exception

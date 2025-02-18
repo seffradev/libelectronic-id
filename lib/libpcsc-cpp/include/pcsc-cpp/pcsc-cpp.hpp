@@ -162,7 +162,7 @@ struct CommandApdu
                                           byte_vector data) : d {std::move(data)}
     {
         if (d.size() > MAX_DATA_SIZE) {
-            throw std::invalid_argument("Command chaining and extended lenght not supported");
+            throw std::invalid_argument("Command chaining and extended length not supported");
         }
         d.insert(d.begin(), {cls, ins, p1, p2, static_cast<byte_type>(d.size())});
     }
@@ -303,7 +303,7 @@ void transmitApduWithExpectedResponse(const SmartCard& card, const CommandApdu& 
 /** Read data length from currently selected file header, file must be ASN.1-encoded. */
 size_t readDataLengthFromAsn1(const SmartCard& card);
 
-/** Read lenght bytes from currently selected binary file in blockLength-sized chunks. */
+/** Read length bytes from currently selected binary file in blockLength-sized chunks. */
 byte_vector readBinary(const SmartCard& card, const size_t length, byte_type blockLength);
 
 // Errors.

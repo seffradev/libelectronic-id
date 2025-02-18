@@ -273,9 +273,9 @@ LONG SCardTransmit(SCARDHANDLE, LPCSCARD_IO_REQUEST, LPCBYTE commandBytes, DWORD
     PcscMock::byte_vector command {commandBytes, commandBytes + commandBytesLength};
     PcscMock::byte_vector response = PcscMock::responseForApduCommand(command);
 
-    DWORD responseLenght = DWORD(response.size());
+    DWORD responseLength = DWORD(response.size());
 
-    if (*responseBytesLength < responseLenght)
+    if (*responseBytesLength < responseLength)
         return SCARD_E_INSUFFICIENT_BUFFER;
 
     auto returnValue = PcscMock::returnValueForScardFunctionCall(__FUNCTION__);
@@ -283,9 +283,9 @@ LONG SCardTransmit(SCARDHANDLE, LPCSCARD_IO_REQUEST, LPCBYTE commandBytes, DWORD
         return returnValue;
     }
 
-    *responseBytesLength = responseLenght;
+    *responseBytesLength = responseLength;
 
-    memcpy(responseBytes, response.data(), responseLenght);
+    memcpy(responseBytes, response.data(), responseLength);
 
     return SCARD_S_SUCCESS;
 }
